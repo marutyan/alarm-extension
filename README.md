@@ -54,15 +54,65 @@ alarm_extention/
 ## 開発環境
 
 ### 必要な環境
-- Android Studio
-- Android SDK
+- Android Studio (Arctic Fox 以降推奨)
+- Android SDK (API 23以降)
 - Kotlin サポート
+- Git
 
-### ビルド
+### 🔧 セットアップ手順
+
+#### 1. GitHubリポジトリの設定
 ```bash
-# Android Studio でプロジェクトを開く
-# または
-./gradlew assembleDebug
+# 1. GitHubで新しいリポジトリを作成
+# 2. リモートリポジトリを追加
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+
+# 3. 最初のプッシュ
+git push -u origin main
+```
+
+#### 2. Android Studioでのプロジェクト開発
+1. **プロジェクトを開く**
+   - Android Studio を起動
+   - 「Open an existing Android Studio project」を選択
+   - プロジェクトのルートディレクトリ（`alarm_extention`）を選択
+
+2. **初回同期**
+   - Android Studio が自動的に Gradle 同期を開始
+   - 必要な SDK とライブラリが自動でダウンロードされます
+
+3. **ビルドと実行**
+   ```bash
+   # コマンドラインから
+   ./gradlew assembleDebug
+   
+   # または Android Studio の「Build > Make Project」
+   ```
+
+### 🎯 Android Studio での作業流れ
+1. **コード編集**: `src/` ディレクトリ内のKotlinファイルを編集
+2. **リソース編集**: `res/` ディレクトリ内のレイアウトやリソースを編集
+3. **ビルド**: `Build > Make Project` でプロジェクトをビルド
+4. **実行**: エミュレータまたは実機で実行
+5. **デバッグ**: Android Studio のデバッガーを使用
+
+### 🔄 Git ワークフロー
+```bash
+# 1. 機能開発
+git checkout -b feature/new-feature
+# コードを編集...
+
+# 2. コミット
+git add .
+git commit -m "Add new feature"
+
+# 3. プッシュ
+git push origin feature/new-feature
+
+# 4. メインブランチにマージ
+git checkout main
+git merge feature/new-feature
+git push origin main
 ```
 
 ## 次のステップ
@@ -84,9 +134,45 @@ alarm_extention/
 - ✅ **国際化**: 多言語サポート
 - ✅ **テスト**: 包括的なテストスイート
 
+### 🔧 トラブルシューティング
+
+#### Android Studio でよくある問題
+1. **Gradle 同期エラー**
+   ```bash
+   # Gradle キャッシュをクリア
+   ./gradlew clean
+   
+   # Android Studio で File > Invalidate Caches and Restart
+   ```
+
+2. **SDK not found エラー**
+   - Android Studio の SDK Manager で必要な SDK をインストール
+   - `local.properties` ファイルで SDK パスを確認
+
+3. **メモリ不足エラー**
+   - `gradle.properties` で JVM メモリを増やす:
+   ```properties
+   org.gradle.jvmargs=-Xmx4096m -Dfile.encoding=UTF-8
+   ```
+
+#### Git 関連の問題
+1. **プッシュ権限エラー**
+   ```bash
+   # SSH キーを設定、または HTTPS で認証
+   git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+   ```
+
+2. **コンフリクト解決**
+   ```bash
+   # コンフリクトファイルを手動で編集後
+   git add .
+   git commit -m "Resolve merge conflicts"
+   ```
+
 ## コミット履歴
 
 ```
+0989082 - Convert AOSP project to Android Studio Gradle project
 a6ff633 - Update .gitignore to exclude IDE configuration files
 a604b41 - Initial commit: Add AOSP DeskClock app source code
 ```
