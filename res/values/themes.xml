@@ -35,6 +35,9 @@
         <item name="colorPrimaryDark">#66000000</item>
         <item name="imageButtonStyle">@style/Widget.ImageButton</item>
         <item name="popupTheme">@style/ThemeOverlay.Popup</item>
+        
+        <!-- Additional missing attributes -->
+        <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
 
     <style name="Theme.DeskClock.Settings">
@@ -70,5 +73,6 @@
     <style name="ThemeOverlay.Popup" parent="ThemeOverlay.AppCompat">
         <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
     </style>
+
 
 </resources>
